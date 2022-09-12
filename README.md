@@ -312,3 +312,50 @@ void drawPokerCard(int x,int y,String face){
 }
 
 ```
+### PART6 隨機抽出4張亂數牌
+```C
+1.將黑桃、方塊、紅心、梅花加入陣列裏頭
+==>  String []flower={"黑桃","紅心","方塊","梅花"};
+2.分別宣告 從花色中C4取1，隨機的數值1~13 加1是為了讓數值不為0
+==> face1=flower[int(random(4))]+int(random(13)+1);
+3. 在draw 上面宣告 字串String
+==> String face1,face2,face3,face4;
+4. 最後隨機用出牌組
+==> void draw(){
+      drawPokerCard(100,100,face1);
+      drawPokerCard(130,150,face2);
+      drawPokerCard(160,200,face3);
+      drawPokerCard(190,250,face4);
+    }
+```
+```C
+最後程式碼
+void setup(){
+  size(500,500);
+  PFont font=createFont("標楷體",40);
+  textFont(font);
+  String []flower={"黑桃","紅心","方塊","梅花"};
+  face1=flower[int(random(4))]+int(random(13)+1);
+  face2=flower[int(random(4))]+int(random(13)+1);
+  face3=flower[int(random(4))]+int(random(13)+1);
+  face4=flower[int(random(4))]+int(random(13)+1);
+}
+String face1,face2,face3,face4;
+void draw(){
+  drawPokerCard(100,100,face1);
+  drawPokerCard(130,150,face2);
+  drawPokerCard(160,200,face3);
+  drawPokerCard(190,250,face4);
+}
+void drawPokerCard(int x,int y,String face){
+  int w=25;
+  fill(255);
+  rect(x-w/2,y-w/2,150+w,250+w,20);
+  fill(#629BE3);
+  rect(x,y,150,250,20);
+  if(face.indexOf("黑桃")==-1 && face.indexOf("梅花")==-1) fill(#FF0000);
+  else fill(0);
+  textSize(40);
+  text(face,x,y+40);
+}
+```
