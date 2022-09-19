@@ -359,3 +359,176 @@ void drawPokerCard(int x,int y,String face){
   text(face,x,y+40);
 }
 ```
+ # week03 2022/09/19
+
+## 今日主題
+
+```
+
+1.撲克牌
+
+2.圍棋
+
+3.象棋
+
+```
+
+## 複習
+
+```
+
+1.放牌、秀牌、洗牌
+
+2.如何選到牌
+
+3.class物件
+
+```
+
+## 上週程式碼
+
+>>> 亂數選取任意花色卡牌
+
+```C
+
+最後程式碼
+
+void setup(){
+
+  size(500,500);
+
+  PFont font=createFont("標楷體",40);
+
+  textFont(font);
+
+  String []flower={"黑桃","紅心","方塊","梅花"};
+
+  face1=flower[int(random(4))]+int(random(13)+1);
+
+  face2=flower[int(random(4))]+int(random(13)+1);
+
+  face3=flower[int(random(4))]+int(random(13)+1);
+
+  face4=flower[int(random(4))]+int(random(13)+1);
+
+}
+
+String face1,face2,face3,face4;
+
+void draw(){
+
+  drawPokerCard(100,100,face1);
+
+  drawPokerCard(130,150,face2);
+
+  drawPokerCard(160,200,face3);
+
+  drawPokerCard(190,250,face4);
+
+}
+
+void drawPokerCard(int x,int y,String face){
+
+  int w=25;
+
+  fill(255);
+
+  rect(x-w/2,y-w/2,150+w,250+w,20);
+
+  fill(#629BE3);
+
+  rect(x,y,150,250,20);
+
+  if(face.indexOf("黑桃")==-1 && face.indexOf("梅花")==-1) fill(#FF0000);
+
+  else fill(0);
+
+  textSize(40);
+
+  text(face,x,y+40);
+
+}
+
+```
+
+## 進階更改程式
+
+>>> 透過滑鼠點擊來變更花色,myshuffle()
+
+```
+
+void setup(){
+
+  size(500,500);
+
+  PFont font=createFont("標楷體",40);
+
+  textFont(font);
+
+  myShuffle();
+
+}
+
+void myShuffle(){
+
+  String []flower={"黑桃","紅心","方塊","梅花"};
+
+  face1=flower[int(random(4))]+int(random(13)+1);
+
+  face2=flower[int(random(4))]+int(random(13)+1);
+
+  face3=flower[int(random(4))]+int(random(13)+1);
+
+  face4=flower[int(random(4))]+int(random(13)+1);
+
+}
+
+void mousePressed(){///透過滑鼠點擊改變花色
+
+  myShuffle();
+
+}
+
+String face1,face2,face3,face4;
+
+void draw(){
+
+  drawPokerCard(100,100,face1);
+
+  drawPokerCard(130,150,face2);
+
+  drawPokerCard(160,200,face3);
+
+  drawPokerCard(190,250,face4);
+
+}
+
+void drawPokerCard(int x,int y,String face){
+
+  int w=25;
+
+  fill(255);
+
+  rect(x-w/2,y-w/2,150+w,250+w,20);
+
+  fill(#629BE3);
+
+  rect(x,y,150,250,20);
+
+  if(face.indexOf("黑桃")==-1 && face.indexOf("梅花")==-1) fill(#FF0000);
+
+  else fill(0);
+
+  textSize(40);
+
+  text(face,x,y+40);
+
+}
+
+``` 
+## 做出52張牌的格子
+```
+1.寫出一個for迴圈,跑從1~52
+2.取餘數的方式取出個位數到10,11從下一行開始
+3.再畫出格子的大小
+```
