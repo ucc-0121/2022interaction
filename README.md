@@ -1776,6 +1776,224 @@ void drawChess(int x, int y, int id){
 2.一次撥!!
 
 ```
+ # Week08 2022-10-24 做出水果忍者
+
+## 放入背景音樂
+
+>>> 要記得去程是素描本下載SOUND程式(才能撥音樂
+
+
+## 切換舞台(有音樂版)
+
+```
+
+1.每開一個檔案音樂都要重新拉進去!
+
+2.透過滑鼠點擊切換舞台
+
+3.一個舞台靜音另一個就撥放音樂
+
+```
+
+
+
+## 切換舞台(簡單版)
+
+```
+
+1.不用拉入音樂
+
+2.滑鼠點擊切換舞台
+
+```
+
+
+
+## 丟一顆水果出來
+
+```
+
+1.設定水果的速度VX VY, 還有位置XY
+
+2.鍵盤點擊可以暫停水果
+
+3.要是中文輸入法~
+
+```
+
+
+
+## 丟一顆水果路線隨機
+
+```
+
+1.訂出更精確的數字位置
+
+2.reset重新丟出水果
+
+3.一樣要切換中文輸入法
+
+4.透過reset隨機丟出路線
+
+```
+
+
+
+## 丟出隨機路線的水果(宣告版)
+
+```
+
+1.加入class
+
+2.sketch 可以讓等下的亂數成功
+
+3.一樣要切換輸入法至中文
+
+```
+
+
+
+## 目前!!
+
+```
+
+1.鍵盤輸入彈出的英文字母
+
+2.輸入的字幕對應代表可以殺掉
+
+3.要有兩個程式碼
+
+```
+
+### FRUIT
+
+```C
+
+String line="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+class Fruit {
+
+  float x, y, vx, vy;
+
+  boolean flying;
+
+  int delay;
+
+  char c;
+
+  PApplet sketch;
+
+  Fruit(PApplet _sketch) {//建構子:一開始要做的事
+
+    sketch= _sketch;//為了讓等一下的亂數可以用
+
+    reset();
+
+  }
+
+  void reset() {
+
+    x=sketch.random(100.0, 300.0);//為了讓等一下的亂數可以用
+
+    y=400;
+
+    vx=sketch.random(-2, +2);//為了讓等一下的亂數可以用
+
+    vy=-13;
+
+    flying=true;
+
+    int i=int(random(26));
+
+    c=line.charAt(i);
+
+    delay=int(random(300));
+
+  }
+
+  void update(){
+
+    if(delay>0) {
+
+      delay--;
+
+      return;
+
+    }
+
+    x+=vx;
+
+    y+=vy;
+
+    vy+=0.98/3;//重力加速度
+
+    if(y>800) reset();
+
+  }
+
+}
+
+```
+
+### TABS
+
+```
+
+Fruit [] fruits;
+
+void setup() {
+
+  size(400, 300);
+
+  fruits=new Fruit[3];
+
+  for (int i=0; i<3; i++) {
+
+    fruits[i]=new Fruit(this);
+
+  }
+
+}
+
+void draw() {
+
+  background(255, 255, 0);
+
+  for (int i=0; i<3; i++) {
+
+    fill(255);
+
+    ellipse(fruits[i].x, fruits[i].y, 50, 50);
+
+    textSize(30);
+
+    textAlign(CENTER, CENTER);
+
+    fill(0);
+
+    text(fruits[i].c, fruits[i].x, fruits[i].y);
+
+    fruits[i].update();
+
+  }
+
+}
+
+void keyPressed() {
+
+  for (int i=0; i<3; i++) {
+
+    if (keyCode==fruits[i].c) {
+
+      fruits[i].reset();
+
+    }
+
+  }
+
+}
+
+```
 
 
 
